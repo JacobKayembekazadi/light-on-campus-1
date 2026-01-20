@@ -10,6 +10,19 @@ export interface User {
   role: UserRole;
   avatar: string;
   campus?: string;
+  email?: string;
+  bio?: string;
+  joinedDate?: string;
+}
+
+export interface Comment {
+  id: string;
+  postId: string;
+  userId: string;
+  userName: string;
+  userAvatar: string;
+  content: string;
+  timestamp: number;
 }
 
 export interface Post {
@@ -21,6 +34,7 @@ export interface Post {
   content: string;
   timestamp: number;
   likes: number;
+  likedBy: string[]; // Array of user IDs who liked
   comments: number;
   type: 'general' | 'announcement' | 'preaching';
   image?: string;
@@ -36,6 +50,16 @@ export interface Course {
   duration: string;
   thumbnail: string;
   content?: string; // Markdown content for the course
+}
+
+export interface Enrollment {
+  id: string;
+  courseId: string;
+  userId: string;
+  progress: number; // 0-100
+  completedLessons: number[];
+  enrolledAt: number;
+  lastAccessedAt: number;
 }
 
 export enum CourseCategory {
@@ -64,4 +88,11 @@ export interface ChatSession {
   lastMessage: string;
   unreadCount: number;
   type: 'personal' | 'group' | 'ai_counselor';
+}
+
+export interface Toast {
+  id: string;
+  message: string;
+  type: 'success' | 'error' | 'info';
+  duration?: number;
 }
